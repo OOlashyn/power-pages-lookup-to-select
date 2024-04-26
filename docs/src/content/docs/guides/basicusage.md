@@ -1,0 +1,21 @@
+---
+title: Basic Usage
+description: How to install LtS
+---
+
+LtS is built as a jQuery function, so you can call **lookupToSelect()** on a selector that defines your lookup field (ideally use an id selector ie "#lookup_name"). The simplest version will require next parameters:
+* **idFieldName** - id field of the table you are fetching data from (example: accountid)
+* **textFieldName** - primary name field of the table you are fetching data from (example: name)
+* **entitySetName** - identified table collection name within Web API (example: accounts). See more details on how to find it/use it in [official Power Page documentation](https://learn.microsoft.com/en-us/power-pages/configure/web-api-overview#using-entitysetname)
+* **targetTableLogicalName** - logical name of your table (example: account)
+
+So, to convert lookup to the Account table with id dwctst_employer we would need to execute following code:
+
+```javascript
+    $("#dwctst_employer").lookupToSelect({
+        idFieldName: 'accountid',
+        textFieldName: 'name',
+        entitySetName: 'accounts',
+        targetTableLogicalName: 'account'
+    });
+```
