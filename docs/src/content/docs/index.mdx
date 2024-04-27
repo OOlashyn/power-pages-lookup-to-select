@@ -1,9 +1,9 @@
 ---
 title: Welcome to Power Pages Lookup to Select
-description: Get started building your docs site with Starlight.
+description: jQuery library to easily replace Power Pages lookup control with Select2 control.
 template: splash
 hero:
-  tagline: jQuery library to easily convert lookup to Select2
+  tagline: jQuery library to easily replace Power Pages lookup control with Select2 control.
   image:
     file: ../../assets/houston.webp
   actions:
@@ -11,23 +11,22 @@ hero:
       link: /power-pages-lookup-to-select/guides/installation/
       icon: right-arrow
       variant: primary
+
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## Next steps
-
 <CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
+	<Card title="Select2" icon="seti:default">
+		Harness the power of [Select2](https://select2.org/) to replace your Power Pages lookup control.
 	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
+	<Card title="East to use" icon="rocket">
+		Call lookupToSelect() on a selector that defines your lookup field to get started.
 	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
+	<Card title="Configure your control" icon="setting">
+		Add custom options and results rendering to your control.
 	</Card>
 	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
+		Learn more in [Docs](/power-pages-lookup-to-select/guides/installation/).
 	</Card>
 </CardGrid>
