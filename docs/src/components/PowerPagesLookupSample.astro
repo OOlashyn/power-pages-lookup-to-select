@@ -1,0 +1,53 @@
+---
+import { Icon } from "@astrojs/starlight/components";
+const { label } = Astro.props;
+---
+
+<style>
+  .control {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+  }
+
+  .input-group {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .label {
+    font-weight: bold;
+  }
+
+  .btn{
+    cursor: pointer;
+  }
+
+  .btn-default {
+    color: #fea002;
+    border-radius: 2px;
+    border-color: #fea002;
+    padding: 2px 16px;
+    border-style: solid;
+    background-color: transparent;
+  }
+
+  .hidden {
+    display: none;
+  }
+</style>
+
+<div class="control not-content">
+  <label class="label" for="countryLookup">{label}</label>
+  <div class="input-group">
+    <input type="text" readonly name="" id="countryLookup" />
+    <div class="input-group-btn">
+      <button class="btn btn-default hidden">
+        <Icon name="close" />
+      </button>
+      <button class="btn btn-default">
+        <Icon name="magnifier" />
+      </button>
+    </div>
+  </div>
+</div>

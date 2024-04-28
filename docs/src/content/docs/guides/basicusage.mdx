@@ -3,6 +3,9 @@ title: Basic Usage
 description: How to install LtS
 ---
 
+import PowerPagesLookupSample from '../../../components/PowerPagesLookupSample.astro';
+import Select2Sample from '../../../components/Select2Sample.astro';
+
 LtS is built as a jQuery function, so you can call **lookupToSelect()** on a selector that defines your lookup field (ideally use an id selector ie "#lookup_name"). The simplest version will require next parameters:
 * **idFieldName** - id field of the table you are fetching data from (example: accountid)
 * **textFieldName** - primary name field of the table you are fetching data from (example: name)
@@ -19,3 +22,11 @@ So, to convert lookup to the Account table with id dwctst_employer we would need
         targetTableLogicalName: 'account'
     });
 ```
+
+Running this code will turn this:
+
+<PowerPagesLookupSample label="Employer"/>
+
+Into this:
+
+<Select2Sample label="Employer"/>

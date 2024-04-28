@@ -21,6 +21,14 @@ export default defineConfig({
 					],
 				},
 				{
+					label: 'Recipes',
+					items: [
+						// Each item here is one entry in the navigation menu.
+						{ label: 'Available data sources', link: '/recipes/data-sources/' },
+						{ label: 'Custom rendering', link: '/recipes/custom-rendering/' },
+					],
+				},
+				{
 					label: 'Reference',
 					autogenerate: { directory: 'reference' },
 				},
