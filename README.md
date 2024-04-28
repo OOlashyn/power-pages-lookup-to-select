@@ -1,6 +1,8 @@
 Power Pages Lookup to Select
 ======
 
+[![](https://data.jsdelivr.com/v1/package/npm/power-pages-lookup-to-select/badge)](https://www.jsdelivr.com/package/npm/power-pages-lookup-to-select)
+
 jQuery library to easily replace Power Pages lookup control with [Select2](https://select2.org/) control.
 
 To get started, check out examples and documentation at https://www.dancingwithcrm.com/power-pages-lookup-to-select
