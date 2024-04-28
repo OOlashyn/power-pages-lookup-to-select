@@ -37,7 +37,7 @@ In order to use Lookup to Select you must include Select2 library as well as con
 One of the easiest way to get LtS is to grab it from CDN. Copy following lines of code and include them in the HTML part of your Web Page.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/power-pages-lookup-to-select@0.9.0/src/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/power-pages-lookup-to-select@0.9.0/src/index.min.js"></script>
 ```
 
 ### Manual addition
