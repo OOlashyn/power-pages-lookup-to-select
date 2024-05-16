@@ -130,7 +130,7 @@
         sel.select2(select2Config);
 
         // add onchange function to populate actual lookup
-        sel.change(function () {
+        sel.on("change", function () {
             const selectedValue = sel.val();
             const selectedValueLabel = $(`#${customSelectId} option:selected`).text();
 
