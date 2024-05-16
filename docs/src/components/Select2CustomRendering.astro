@@ -1,0 +1,142 @@
+---
+const { label } = Astro.props;
+---
+
+<style>
+  .control {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+  }
+
+  .label {
+    font-weight: bold;
+  }
+
+  .select2-account-title {
+    font-weight: bold;
+  }
+</style>
+
+<style is:global>
+  .select2-account-details {
+    display: flex;
+  }
+
+  .select2-account-details-info {
+    display: flex;
+    margin-right: 10px;
+    align-items: center;
+  }
+
+  .select2-account-details-info-icon {
+    width: 15px;
+    margin-right: 5px;
+  }
+</style>
+
+<script
+  is:inline
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous"></script>
+
+<link
+  href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+  rel="stylesheet"
+/>
+<script
+  is:inline
+  src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"
+></script>
+
+<div class="control not-content">
+  <label class="label" for="employerSelect">{label}</label>
+  <select name="" id="employerSelect"> </select>
+</div>
+
+<script is:inline>
+  const globe_svg = `<span class="select2-account-details-info-icon"><svg  width="15px" version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+	 viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+        <path fill="#231F20" d="M32,0C14.327,0,0,14.327,0,32s14.327,32,32,32s32-14.327,32-32S49.673,0,32,0z M49.972,31
+            c-0.138-5.582-1.414-10.878-3.613-15.667c2.652-1.022,5.169-2.317,7.515-3.854c4.824,5.14,7.854,11.976,8.102,19.521H49.972z
+            M33.333,61.966c-0.11,0.005-0.222,0.005-0.333,0.009V50.035c3.324,0.087,6.547,0.581,9.605,1.47
+            C40.184,55.541,37.029,59.084,33.333,61.966z M44.549,52.141c2.283,0.801,4.462,1.817,6.523,3.018
+            c-3.991,3.29-8.849,5.563-14.178,6.438C39.902,58.861,42.484,55.672,44.549,52.141z M21.394,51.505
+            c3.059-0.89,6.282-1.383,9.606-1.47v11.939c-0.111-0.004-0.223-0.004-0.333-0.009C26.97,59.084,23.816,55.541,21.394,51.505z
+            M27.105,61.596c-5.329-0.874-10.187-3.147-14.178-6.438c2.062-1.2,4.24-2.217,6.523-3.017
+            C21.515,55.672,24.098,58.861,27.105,61.596z M2.025,31c0.248-7.545,3.277-14.381,8.102-19.521c2.346,1.536,4.862,2.831,7.515,3.854
+            C15.442,20.122,14.166,25.418,14.028,31H2.025z M43.57,14.196c-3.345,1.069-6.894,1.67-10.57,1.766V2.025
+            c0.111,0.004,0.223,0.004,0.333,0.009C37.541,5.314,41.047,9.453,43.57,14.196z M36.895,2.404
+            c5.944,0.976,11.298,3.696,15.521,7.622c-2.176,1.391-4.496,2.57-6.944,3.499C43.278,9.326,40.369,5.562,36.895,2.404z M31,2.025
+            v13.937c-3.677-0.096-7.226-0.696-10.57-1.766c2.523-4.743,6.029-8.882,10.237-12.162C30.777,2.029,30.889,2.029,31,2.025z
+            M18.529,13.525c-2.448-0.929-4.769-2.108-6.944-3.499c4.223-3.926,9.576-6.646,15.521-7.622
+            C23.631,5.562,20.722,9.326,18.529,13.525z M19.532,16.009c3.622,1.189,7.472,1.873,11.468,1.972V31H16.031
+            C16.17,25.654,17.403,20.584,19.532,16.009z M31,33v15.036c-3.684,0.092-7.245,0.665-10.615,1.689
+            C17.732,44.712,16.188,39.029,16.031,33H31z M33,48.036V33h14.969c-0.156,6.029-1.701,11.712-4.354,16.726
+            C40.245,48.701,36.684,48.128,33,48.036z M33,31V17.98c3.996-0.099,7.846-0.782,11.468-1.972c2.129,4.575,3.362,9.646,3.501,14.991
+            H33z M2.025,33h12.003c0.154,6.253,1.74,12.146,4.447,17.369c-2.496,0.899-4.871,2.044-7.109,3.396
+            C5.827,48.513,2.294,41.172,2.025,33z M52.634,53.766c-2.238-1.353-4.613-2.497-7.109-3.396c2.707-5.224,4.293-11.116,4.447-17.369
+            h12.003C61.706,41.172,58.173,48.513,52.634,53.766z"/>
+        </svg></span>`;
+
+  const briefcase_svg = `<span class="select2-account-details-info-icon"><svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+      width="15px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+<path fill="#231F20" d="M60,13H48V4c0-2.211-1.789-4-4-4H20c-2.211,0-4,1.789-4,4v9H4c-2.211,0-4,1.789-4,4v43c0,2.211,1.789,4,4,4
+	h56c2.211,0,4-1.789,4-4V17C64,14.789,62.211,13,60,13z M18,4c0-1.104,0.896-2,2-2h24c1.104,0,2,0.896,2,2v9h-2V5
+	c0-0.553-0.447-1-1-1H21c-0.553,0-1,0.447-1,1v8h-2V4z M42,6v7H22V6H42z M62,60c0,1.104-0.896,2-2,2H4c-1.104,0-2-0.896-2-2V42h10v5
+	c0,0.553,0.447,1,1,1h6c0.553,0,1-0.447,1-1v-5h24v5c0,0.553,0.447,1,1,1h6c0.553,0,1-0.447,1-1v-5h10V60z M14,46V36h4v10H14z
+	 M46,46V36h4v10H46z M62,40H52v-5c0-0.553-0.447-1-1-1h-6c-0.553,0-1,0.447-1,1v5H20v-5c0-0.553-0.447-1-1-1h-6
+	c-0.553,0-1,0.447-1,1v5H2V17c0-1.104,0.896-2,2-2h56c1.104,0,2,0.896,2,2V40z"/>
+</svg></span>`;
+
+  $(document).ready(function () {
+    const data = [
+      {
+        id: 0,
+        text: "Apple",
+        industry: "Technology",
+        country: "USA",
+      },
+      {
+        id: 1,
+        text: "Apple",
+        industry: "Entertaiment",
+        country: "Canada",
+      },
+      {
+        id: 2,
+        text: "Google",
+        industry: "Technology",
+        country: "USA",
+      },
+      {
+        id: 3,
+        text: "Microsoft",
+        industry: "Technology",
+        country: "USA",
+      },
+    ];
+
+    $("#employerSelect").select2({
+      data: data,
+      templateResult: function (data) {
+        if (!data.id) {
+          return data.text;
+        }
+
+        let $container = $(
+          `<div class='select2-selection-wrapper'>
+                <div class='select2-account-title'>${data.text}</div>
+                <div class='select2-account-details'>
+                    <span class='select2-account-details-info'>${globe_svg}${data.country}</span>
+                    <span class='select2-account-details-info'>${briefcase_svg}${data.industry}</span>
+                </div>
+            </div>`
+        );
+
+        return $container;
+      },
+    });
+  });
+</script>

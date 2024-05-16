@@ -1,0 +1,95 @@
+---
+const { label } = Astro.props;
+---
+
+<style>
+  .control {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+  }
+
+  .label {
+    font-weight: bold;
+  }
+
+  .select2-account-title {
+    font-weight: bold;
+  }
+</style>
+
+<style is:global>
+  .select2-account-details {
+    display: flex;
+  }
+
+  .select2-account-details-info {
+    display: flex;
+    margin-right: 10px;
+    align-items: center;
+  }
+
+  .select2-account-details-info-icon {
+    width: 15px;
+    margin-right: 5px;
+  }
+</style>
+
+<script
+  is:inline
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous"></script>
+
+<link
+  href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+  rel="stylesheet"
+/>
+<script
+  is:inline
+  src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"
+></script>
+
+<div class="control not-content">
+  <label class="label" for="employerSelect_customgrouping">{label}</label>
+  <select name="" id="employerSelect_customgrouping"> </select>
+</div>
+
+<script is:inline>
+  $(document).ready(function () {
+    const data = [
+    { 
+      "text": "Pacific Time Zone", 
+      "children" : [
+        {
+            "id": 1,
+            "text": "California"
+        },
+        {
+            "id": 2,
+            "text": "Washington"
+        }
+      ]
+    },
+    { 
+      "text": "Eastern Time Zone", 
+      "children" : [
+        {
+            "id": 3,
+            "text": "New York"
+        },
+        {
+            "id": 4,
+            "text": "Ohio"
+        }
+      ]
+    }
+  ];
+
+    $("#employerSelect_customgrouping").select2({
+      data: data
+    });
+  });
+</script>
+
+
