@@ -17,16 +17,13 @@ So let's say you need to filter your employers (accounts) by name. To do so we c
 
 ```js
 function getEmployerByName(employerName, successHandler, errorHandler) {
-    const select = `$select=accountid,name,_dwctst_country_value,industrycode&$orderby=name asc`;
+    const select = `$select=accountid,name&$orderby=name asc`;
     const filter = employerName ? `&$filter=startswith(name,'${employerName}')` : "";
     const options = select+filter;
     webapi.safeAjax({
         type: "GET",
         url: `/_api/accounts?${options}`,
         contentType: "application/json",
-        headers: {
-            "Prefer": "odata.include-annotations=*"
-        },
         success: successHandler,
         error: errorHandler
     });
@@ -47,7 +44,9 @@ $(document).ready(function(){
 ## data
 
 You might also have certain scenarios when you want to show only predefined list of data. In that case you can supply `data` variable to the LtS.
-`data` needs to be an array of objects, each object with 2 properties: **id** and **text**.
+`data` needs to be an array of objects, each object with 2 properties: **id** and **text**. 
+
+For all supported data formats please visit [Select2 data format documentation](https://select2.org/data-sources/formats).
 
 ```js
 const data = [

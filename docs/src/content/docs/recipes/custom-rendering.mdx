@@ -6,6 +6,7 @@ description: Advance scenarios for custom results and options rendering
 import Select2Sample from '../../../components/Select2Sample.astro';
 import Select2CustomRendering from '../../../components/Select2CustomRendering.astro';
 import Select2CustomGrouping from '../../../components/Select2CustomGrouping.astro';
+import { Aside } from '@astrojs/starlight/components';
 
 Select2 provides a lot of flexibility when it comes to rendering options and results. Below you can find several examples of how you can customize the rendering of your Select2 dropdowns with LtS. For the full list of available options please visit the [official Select2 documentation](https://select2.org/).
 
@@ -78,7 +79,10 @@ Which will look something like this:
 
 ## Custom options grouping
 
+
 <Select2CustomGrouping label="States"/>
+
+<Aside type="danger">Only one level of grouping is supported.</Aside>
 
 ## Custom result rendering
 

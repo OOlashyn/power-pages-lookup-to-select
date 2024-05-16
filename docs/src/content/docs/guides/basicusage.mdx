@@ -12,7 +12,9 @@ LtS is built as a jQuery function, so you can call **lookupToSelect()** on a sel
 * **entitySetName** - table collection name within Web API (example: accounts). See more details on how to find it/use it in [official Power Page documentation](https://learn.microsoft.com/en-us/power-pages/configure/web-api-overview#using-entitysetname)
 * **targetTableLogicalName** - logical name of your table (example: account)
 
-So, to convert lookup to the Account table with id dwctst_employer we would need to execute following code:
+LtS will also handle population of the lookup field with the selected value, so you don't need to worry about that.
+
+For example: to convert lookup to the Account table with id dwctst_employer we would need to execute following code:
 
 ```javascript
     $("#dwctst_employer").lookupToSelect({
