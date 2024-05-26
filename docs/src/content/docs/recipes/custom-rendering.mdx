@@ -6,19 +6,24 @@ description: Advance scenarios for custom results and options rendering
 import Select2Sample from '../../../components/Select2Sample.astro';
 import Select2CustomRendering from '../../../components/Select2CustomRendering.astro';
 import Select2CustomGrouping from '../../../components/Select2CustomGrouping.astro';
+import Select2ResultSample from '../../../components/Select2ResultSample.astro';
 import { Aside } from '@astrojs/starlight/components';
 
 Select2 provides a lot of flexibility when it comes to rendering options and results. Below you can find several examples of how you can customize the rendering of your Select2 dropdowns with LtS. For the full list of available options please visit the [official Select2 documentation](https://select2.org/).
 
 ## Custom options rendering
 
-Another great benefit of Select2 is custom options rendering. LtS exposes `resultRenderer` which expects the function that will receive an item and should return a string with the text to be displayed, or valid jQuery options. Any html that will be passed directly (ie not via jQuery object) will be removed.
+Another great benefit of Select2 is custom options rendering. LtS exposes `optionRenderer` which expects the function that will receive an item and should return a string with the text to be displayed, or valid jQuery options. Any html that will be passed directly (ie not via jQuery object) will be removed.
 
-Item that will be passed to `resultRenderer` function will contain all fields that will be retrieved by your data retrival function alongside Select2 specific fields like ***text*** and ***loading***.
+Item that will be passed to `optionRenderer` function will contain all fields that will be retrieved by your data retrival function alongside Select2 specific fields like ***text*** and ***loading***.
 
 This is extremely useful when you want to show more information about the option than just the text. 
 
 For example: if you have accounts with the same name showing additional details like country or industry can make it easier for the user to select correct option.
+
+Which might look something like this (see example code below)
+
+<Select2CustomRendering label="Employer"/>
 
 ```js
 function getEmployerByName(employerName, successHandler, errorHandler) {
@@ -68,22 +73,110 @@ $(document).ready(function(){
         idFieldName: 'accountid',
         textFieldName: 'name',
         targetTableLogicalName: 'account',
-        resultRenderer: renderAccountWithDetails
+        optionRenderer: renderAccountWithDetails
     });
 });
 ```
 
-Which will look something like this:
-
-<Select2CustomRendering label="Employer"/>
-
 ## Custom options grouping
 
+Select2 also supports custom options grouping via HTML optgroup elements. This is useful when you want to group options in a dropdown by some criteria like timezone, country, etc.
 
-<Select2CustomGrouping label="States"/>
+LtS exposes two options for grouping: `groupBy` and `groupByText`. `groupBy` should be the name of the field that will be used for grouping, and `groupByText` should be the name of the field that will be used for displaying the group name.
 
-<Aside type="danger">Only one level of grouping is supported.</Aside>
+For example: if you have a list of accounts and grouping them by industry can make it easier for the user to find the correct option.
+
+Which might look something like this (see example code below)
+
+<Select2CustomGrouping label="Employer"/>
+
+<Aside type="caution">Only one level of grouping is supported.</Aside>
+
+```js
+function getEmployerByName(employerName, successHandler, errorHandler) {
+    const select = `$select=accountid,name,_dwctst_country_value,industrycode&$orderby=name asc`;
+    const filter = employerName ? `&$filter=startswith(name,'${employerName}')` : "";
+    const options = select+filter;
+    webapi.safeAjax({
+        type: "GET",
+        url: `/_api/accounts?${options}`,
+        contentType: "application/json",
+        headers: {
+            "Prefer": "odata.include-annotations=*"
+        },
+        success: successHandler,
+        error: errorHandler
+    });
+}
+
+$(document).ready(function(){
+    $("#dwctst_employer").lookupToSelect({
+        getData: getEmployerByName,
+        placeholder: 'Search for an employer',
+        idFieldName: 'accountid',
+        textFieldName: 'name',
+        targetTableLogicalName: 'account',
+        groupByFieldName: 'industrycode',
+        groupByTextFieldName: 'industrycode@OData.Community.Display.V1.FormattedValue'
+    });
+});
+```
 
 ## Custom result rendering
 
+Select2 allows you to render result of the selection in a custom way. LtS exposes `resultRenderer` which expects the function that will receive an item and should return a string with the text to be displayed, or valid jQuery options. Any html that will be passed directly (ie not via jQuery object) will be removed.
 
+Item that will be passed to `resultRenderer` function will contain all fields that will be retrieved by your data retrival function alongside Select2 specific fields like ***text*** and ***loading***.
+
+This is extremely useful when you want to show more information about the selected option.
+
+For example: you might want to show an account logo alongside the account name, to help users to identify the correct account.
+
+Which might look something like this (see example code below)
+
+<Select2ResultSample label="Employer"/>
+
+```js
+function getEmployerByName(employerName, successHandler, errorHandler) {
+    const select = `$select=accountid,name,_dwctst_country_value,industrycode,dwctst_logourl&$orderby=name asc`;
+    const filter = employerName ? `&$filter=startswith(name,'${employerName}')` : "";
+    const options = select+filter;
+    webapi.safeAjax({
+        type: "GET",
+        url: `/_api/accounts?${options}`,
+        contentType: "application/json",
+        headers: {
+            "Prefer": "odata.include-annotations=*"
+        },
+        success: successHandler,
+        error: errorHandler
+    });
+}
+
+function renderAccountWithDetails(account) {
+    // handle scenario when options are still loading
+    if (account.loading) {
+        return account.text;
+    }
+
+    let $account = $(
+        `<span style='display:flex;align-items: center;'>
+            <img style='width:auto;height:20px; margin-right:10px' src='${account.dwctst_logourl}'/>
+            ${account.text}
+        </span>`
+    );
+
+    return $account;
+}
+
+$(document).ready(function(){
+    $("#dwctst_employer").lookupToSelect({
+        getData: getEmployerByName,
+        placeholder: 'Search for an employer',
+        idFieldName: 'accountid',
+        textFieldName: 'name',
+        targetTableLogicalName: 'account',
+        resultRenderer: renderAccountWithDetails
+    });
+});
+```

@@ -46,8 +46,6 @@ $(document).ready(function(){
 You might also have certain scenarios when you want to show only predefined list of data. In that case you can supply `data` variable to the LtS.
 `data` needs to be an array of objects, each object with 2 properties: **id** and **text**. 
 
-For all supported data formats please visit [Select2 data format documentation](https://select2.org/data-sources/formats).
-
 ```js
 const data = [
     {

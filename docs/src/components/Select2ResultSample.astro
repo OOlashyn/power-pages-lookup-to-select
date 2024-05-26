@@ -1,0 +1,99 @@
+---
+const { label } = Astro.props;
+---
+
+<style>
+  .control {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+  }
+
+  .label {
+    font-weight: bold;
+  }
+
+  .select2-account-title {
+    font-weight: bold;
+  }
+</style>
+
+<style is:global>
+  .select2-account-details {
+    display: flex;
+  }
+
+  .select2-account-details-info {
+    display: flex;
+    margin-right: 10px;
+    align-items: center;
+  }
+
+  .select2-account-details-info-icon {
+    width: 15px;
+    margin-right: 5px;
+  }
+</style>
+
+<script
+  is:inline
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous"></script>
+
+<link
+  href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+  rel="stylesheet"
+/>
+<script
+  is:inline
+  src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"
+></script>
+
+<div class="control not-content">
+  <label class="label" for="customResultRenderingSelect">{label}</label>
+  <select name="" id="customResultRenderingSelect"> </select>
+</div>
+
+<script is:inline>
+  $(document).ready(function () {
+    const data = [
+      {
+        id: 0,
+        text: "Apple",
+        industry: "Technology",
+        country: "USA",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg",
+      },
+      {
+        id: 2,
+        text: "Netflix",
+        industry: "Technology",
+        country: "USA",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/0/0c/Netflix_2015_N_logo.svg",
+      },
+      {
+        id: 3,
+        text: "Microsoft",
+        industry: "Technology",
+        country: "USA",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
+      },
+    ];
+
+    $("#customResultRenderingSelect").select2({
+      data: data,
+      templateSelection: function (data) {
+        if (!data.id) {
+          return data.text;
+        }
+
+        let $container = $(
+          `<span style='display:flex;align-items: center;'><img style='width:auto;height:20px; margin-right:10px' src='${data.logo}'/>${data.text}</span>`
+        );
+
+        return $container;
+      },
+    });
+  });
+</script>

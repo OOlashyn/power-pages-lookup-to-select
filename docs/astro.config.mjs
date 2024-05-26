@@ -32,10 +32,6 @@ export default defineConfig({
 					label: 'Reference',
 					autogenerate: { directory: 'reference' },
 				},
-				{
-					label: 'FAQ',
-					autogenerate: { directory: 'faq' },
-				},
 			],
 		}),
 	],
