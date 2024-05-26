@@ -105,14 +105,42 @@
                     settings.getData(params.data.term, success, failure);
                 },
                 processResults: function (data) {
-                    // transform response to the select2 expected format
-                    let formattedResponse = data.value.map(el => $.extend(
-                        {
-                            id: el[settings.idFieldName],
-                            text: el[settings.textFieldName]
-                        },
-                        el
-                    ));
+                    let formattedResponse;
+
+                    // grouping results if groupBy is provided
+                    // and transforming data to the expected format
+                    if (settings.groupByFieldName) {
+                        formattedResponse = data.value.reduce((acc, el) => {
+                            const formattedElement = $.extend(
+                                {
+                                    id: el[settings.idFieldName],
+                                    text: el[settings.textFieldName]
+                                },
+                                el
+                            );
+
+                            const groupValue = formattedElement[settings.groupByFieldName];
+                            const groupText = formattedElement[settings.groupByTextFieldName];
+                            if (!acc[groupValue]) {
+                                acc[groupValue] = {
+                                    text: groupText,
+                                    children: []
+                                };
+                            }
+                            acc[groupValue].children.push(formattedElement);
+                            return acc;
+                        }, {});
+                        formattedResponse = Object.values(formattedResponse);
+                    } else {
+                        // transform response to the select2 expected format
+                        formattedResponse = data.value.map(el => $.extend(
+                            {
+                                id: el[settings.idFieldName],
+                                text: el[settings.textFieldName]
+                            },
+                            el
+                        ));
+                    }
 
                     return {
                         results: formattedResponse
@@ -121,10 +149,16 @@
             }
         }
 
+        // custom option rendering
+        if (settings.optionRenderer) {
+            select2Config.templateResult = settings.optionRenderer;
+        }
+
         // custom result rendering
         if (settings.resultRenderer) {
-            select2Config.templateResult = settings.resultRenderer;
+            select2Config.templateSelection  = settings.resultRenderer;
         }
+
 
         // initiate select2
         sel.select2(select2Config);
