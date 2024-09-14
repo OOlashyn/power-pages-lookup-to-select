@@ -171,6 +171,9 @@
             $(`#${fieldId}`).val(selectedValue);
             $(`#${fieldId}_entityname`).val(settings.targetTableLogicalName);
             $(`#${fieldId}_name`).val(selectedValueLabel);
+
+            // trigger change event on original lookup
+            $(`#${fieldId}`).trigger("change");
         });
 
         // hide original lookup
