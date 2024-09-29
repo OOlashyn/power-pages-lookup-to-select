@@ -176,6 +176,9 @@
             $(`#${fieldId}`).trigger("change");
         });
 
+        // make select2 responsive
+        $(`#${customSelectId}`).parent().find(".select2").css("width", "100%");
+
         // hide original lookup
         this.parent().hide();
     };
