@@ -25,7 +25,9 @@ export default defineConfig({
 					items: [
 						// Each item here is one entry in the navigation menu.
 						{ label: 'Available data sources', link: '/recipes/data-sources/' },
+						{ label: 'Retrieving selection', link: '/recipes/getting-selection/' },
 						{ label: 'Custom rendering', link: '/recipes/custom-rendering/' },
+						{ label: 'Result manipulations', link: '/recipes/result-manipulation/' },
 					],
 				},
 				{
