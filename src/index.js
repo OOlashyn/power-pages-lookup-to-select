@@ -171,7 +171,13 @@
             $(`#${fieldId}`).val(selectedValue);
             $(`#${fieldId}_entityname`).val(settings.targetTableLogicalName);
             $(`#${fieldId}_name`).val(selectedValueLabel);
+
+            // trigger change event on original lookup
+            $(`#${fieldId}`).trigger("change");
         });
+
+        // make select2 responsive
+        $(`#${customSelectId}`).parent().find(".select2").css("width", "100%");
 
         // hide original lookup
         this.parent().hide();

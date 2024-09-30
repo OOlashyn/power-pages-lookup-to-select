@@ -1,6 +1,6 @@
 {
   "name": "power-pages-lookup-to-select",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "jQuery library to easily replace Power Pages lookup control with Select2 control",
   "main": "src/index.js",
   "directories": {

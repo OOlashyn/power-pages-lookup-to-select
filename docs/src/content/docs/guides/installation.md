@@ -14,7 +14,7 @@ One of the easiest way to get LtS and Select2 is to grab them from CDN. Copy fol
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <!-- Adding LtS -->
-<script src="https://cdn.jsdelivr.net/npm/power-pages-lookup-to-select@1.0.0/src/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/power-pages-lookup-to-select@1.1.0/src/index.min.js"></script>
 ```
 
 ## Manual addition
