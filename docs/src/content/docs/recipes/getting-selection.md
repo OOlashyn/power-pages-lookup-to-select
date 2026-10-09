@@ -30,7 +30,7 @@ This can be useful when you need to get additional details and act on them after
 ```javascript
 function getEmployerByName(employerName, successHandler, errorHandler) {
     const select = `$select=accountid,name,_dwctst_country_value,industrycode&$orderby=name asc`;
-    const filter = employerName ? `&$filter=startswith(name,'${employerName}')` : "";
+    const filter = employerName ? `&$filter=startswith(name,'${encodeURIComponent(employerName.replace(/'/g, "''"))}')` : "";
     const options = select+filter;
     webapi.safeAjax({
         type: "GET",

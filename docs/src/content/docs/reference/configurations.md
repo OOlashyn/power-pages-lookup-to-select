@@ -14,9 +14,11 @@ List of all available options for LtS
 | `minimumInputLength` | number | **optional** | The number of symbols users needs to enter before triggering search functionality |
 | `delay` | number | **optional** | The number of milliseconds to wait for the user to stop typing before issuing the ajax request  |
 | `placeholder` | string | **optional** | Placeholder of the input |
-| `getData` | function | **optional** | Function to fetch necessary options based on the user input. See [Data sources](/power-pages-lookup-to-select/recipes/advance-filtering/) for more details |
+| `allowClear` | boolean | **optional** | Shows a button that lets users clear the selected value |
+| `maxResults` | number | **optional** | Maximum number of records returned by the built-in Web API search (`$top`). Defaults to `50`. Set to `null` to disable. Not used when `getData` or `data` is provided |
+| `getData` | function | **optional** | Function to fetch necessary options based on the user input. See [Data sources](/power-pages-lookup-to-select/recipes/data-sources/) for more details |
 | `data` | array | **optional** | Array of available options. See [Data sources](/power-pages-lookup-to-select/recipes/data-sources/) for more details |
 | `optionRenderer` | function | **optional** | Function to specify how the available options should be rendered. See [Custom rendering](/power-pages-lookup-to-select/recipes/custom-rendering/) for more details |
 | `resultRenderer` | function | **optional** | Function to specify how the selected option should be rendered. See [Custom rendering](/power-pages-lookup-to-select/recipes/custom-rendering/) for more details |
 | `groupByFieldName` | string | **optional** | The name of the field that will be used for options grouping. See [Custom rendering](/power-pages-lookup-to-select/recipes/custom-rendering/) for more details |
-| `groupByTextFieldName` | string | **optional** | The name of the field that will be used for displaying the group name. See [Custom rendering](/power-pages-lookup-to-select/recipes/custom-rendering/) for more details |
+| `groupByTextFieldName` | string | **optional** | The name of the field that will be used for displaying the group name. If omitted, the formatted value of `groupByFieldName` is used. See [Custom rendering](/power-pages-lookup-to-select/recipes/custom-rendering/) for more details |

@@ -28,7 +28,7 @@ Which might look something like this (see example code below)
 ```js
 function getEmployerByName(employerName, successHandler, errorHandler) {
     const select = `$select=accountid,name,_dwctst_country_value,industrycode&$orderby=name asc`;
-    const filter = employerName ? `&$filter=startswith(name,'${employerName}')` : "";
+    const filter = employerName ? `&$filter=startswith(name,'${encodeURIComponent(employerName.replace(/'/g, "''"))}')` : "";
     const options = select+filter;
     webapi.safeAjax({
         type: "GET",
@@ -95,7 +95,7 @@ Which might look something like this (see example code below)
 ```js
 function getEmployerByName(employerName, successHandler, errorHandler) {
     const select = `$select=accountid,name,_dwctst_country_value,industrycode&$orderby=name asc`;
-    const filter = employerName ? `&$filter=startswith(name,'${employerName}')` : "";
+    const filter = employerName ? `&$filter=startswith(name,'${encodeURIComponent(employerName.replace(/'/g, "''"))}')` : "";
     const options = select+filter;
     webapi.safeAjax({
         type: "GET",
@@ -139,7 +139,7 @@ Which might look something like this (see example code below)
 ```js
 function getEmployerByName(employerName, successHandler, errorHandler) {
     const select = `$select=accountid,name,_dwctst_country_value,industrycode,dwctst_logourl&$orderby=name asc`;
-    const filter = employerName ? `&$filter=startswith(name,'${employerName}')` : "";
+    const filter = employerName ? `&$filter=startswith(name,'${encodeURIComponent(employerName.replace(/'/g, "''"))}')` : "";
     const options = select+filter;
     webapi.safeAjax({
         type: "GET",

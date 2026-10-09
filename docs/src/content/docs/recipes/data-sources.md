@@ -13,14 +13,20 @@ To support custom data retrieval LtS exposes `getData` function. This function d
 * `successHandler` - function provided by Select2 to handle success and process results
 * `errorHandler`- function provided by Select2 to handle errors
 
+Optionally, `getData` can return the request object (for example the result of `webapi.safeAjax`). If it has an `abort` method, LtS will use it to cancel outdated requests while the user keeps typing. Responses of outdated requests are ignored either way.
+
+:::caution
+Always escape the search term before placing it into the `$filter` query. Single quotes must be doubled and the value must be URL-encoded, otherwise searches like `O'Brien` or `AT&T` will fail.
+:::
+
 So let's say you need to filter your employers (accounts) by name. To do so we can write custom getEmployerByName function and pass it as a getData parameter
 
 ```js
 function getEmployerByName(employerName, successHandler, errorHandler) {
     const select = `$select=accountid,name&$orderby=name asc`;
-    const filter = employerName ? `&$filter=startswith(name,'${employerName}')` : "";
+    const filter = employerName ? `&$filter=startswith(name,'${encodeURIComponent(employerName.replace(/'/g, "''"))}')` : "";
     const options = select+filter;
-    webapi.safeAjax({
+    return webapi.safeAjax({
         type: "GET",
         url: `/_api/accounts?${options}`,
         contentType: "application/json",

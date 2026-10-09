@@ -12,7 +12,7 @@ function getEmployerByName(countryName, successHandler, errorHandler) {
     const select = `$select=dwctst_name,dwctst_countryid&$orderby=dwctst_name asc`;
     // if countryName is present add filter that name of the country should start with the
     // provided search term
-    const filter = countryName ? `&$filter=startswith(dwctst_name,'${countryName}')` : "";
+    const filter = countryName ? `&$filter=startswith(dwctst_name,'${encodeURIComponent(countryName.replace(/'/g, "''"))}')` : "";
     const options = select+filter;
     webapi.safeAjax({
         type: "GET",
