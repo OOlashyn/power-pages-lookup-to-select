@@ -159,6 +159,10 @@
             select2Config.templateSelection  = settings.resultRenderer;
         }
 
+        // allowClear option
+        if(settings.allowClear) {
+            select2Config.allowClear = true;
+        }
 
         // initiate select2
         sel.select2(select2Config);
@@ -169,7 +173,7 @@
             const selectedValueLabel = $(`#${customSelectId} option:selected`).text();
 
             $(`#${fieldId}`).val(selectedValue);
-            $(`#${fieldId}_entityname`).val(settings.targetTableLogicalName);
+            $(`#${fieldId}_entityname`).val(selectedValue == null ? selectedValue : settings.targetTableLogicalName);
             $(`#${fieldId}_name`).val(selectedValueLabel);
 
             // trigger change event on original lookup
