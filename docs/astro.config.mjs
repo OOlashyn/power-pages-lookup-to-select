@@ -3,7 +3,7 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://oolashyn.github.io',
+	site: 'https://olashyn.dev',
 	base: '/power-pages-lookup-to-select',
 	integrations: [
 		starlight({
