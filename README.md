@@ -5,7 +5,7 @@ Power Pages Lookup to Select
 
 jQuery library to easily replace Power Pages lookup control with [Select2](https://select2.org/) control.
 
-To get started, check out examples and documentation at https://www.dancingwithcrm.com/power-pages-lookup-to-select
+To get started, check out examples and documentation at https://olashyn.dev/power-pages-lookup-to-select
 
 Usage
 ------
